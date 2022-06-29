@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ES">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcula tu DNI</title>
+   
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&family=Ubuntu&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- JS -->
+    <script type="text/javascript" src="./js/dni-checker.js"></script>
+</head>
+<body>
+    <div id="container1">
+        <h1>Calcula tu DNI</h1>
+        <form action="#" onsubmit="return checkDni()">
+            
+            <label for="number">Número</label>
+            <input type="text" name="dni-number" id="dni-number" maxlength="8" placeholder="12345678"/>
+
+            <label for="letter">Letra</label>
+            <input type="text" name="letter" id="letter" maxlength="1" placeholder="Z"/>
+            
+            <input type="submit" id="button" value="Aceptar">
+        </form>
+    </div>
+
+    <div id="container2">
+        <span>LA LETRA DEL NIF INDICADA</span>
+        <span id="message"></span>
+        <span>TU NÚMERO COMPLETO ES</span>
+        <span id="full-dni"></span>
+    </div>  
+</body>
+</html>

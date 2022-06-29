@@ -1,0 +1,100 @@
+html, body {
+    width: 100%;
+    background-color: #C9E4E1;
+}
+
+#container1, #container2 {
+    width: 40%;
+    height: auto;
+    margin: 50px auto;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    background-color: #eff7f6;
+    letter-spacing: 1px;
+	box-sizing: border-box;
+}
+
+#container1 h1 {
+    font-family: 'Ubuntu', sans-serif;
+    padding-bottom: 20px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+form label:nth-child(4) {
+    margin-top: 10px;
+}
+
+#dni-number, #letter {
+    display: block;
+    margin: 10px auto;
+    background-color: #eff7f6;
+    border: 1px solid black;
+    padding: 10px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+	background-color: white;
+    transition: all 0.15s ease-in-out;
+}
+
+#dni-number:hover, #letter:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#button {
+    display: block;
+    background-color: #52A398;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+	cursor: pointer;
+    margin: 30px auto 0 auto;
+}
+
+#container2 span {
+    display: block;
+}
+
+#container2 span:nth-child(3) {
+    margin-top: 30px;
+}
+
+#message,
+#full-dni {
+    display: block;
+    text-transform: uppercase;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.success-message {
+    color: #5AA33E;
+}
+
+.error-message {
+    color: #D52941;
+}
+
+#full-dni {
+    color: #FF9F1C;
+}
