@@ -42,8 +42,8 @@ const errorOutcomeMessageCSSClass = 'error-message';
 
 function checkDni()
 {
-    let areThereNumberErrors = checkNumberErrors(dniNumberInput.value);
-    let areThereLetterErrors = checkLetterErrors(dniLetterInput.value);
+    let areThereNumberErrors = areThereInputErrors(dniNumberInput.value, true);
+    let areThereLetterErrors = areThereInputErrors(dniLetterInput.value, false);
 
     // Failsafe
     if (areThereNumberErrors || areThereLetterErrors)
@@ -56,39 +56,32 @@ function checkDni()
     return false;
 }
 
-function checkNumberErrors(number)
+function areThereInputErrors(inputValue, isNumber)
 {
     let result = false;
-    if (number.length == 0)
+    let alertMessage = undefined;
+    
+    if (inputValue.length == 0)
     {
-        alert(numberInputIsEmptyAlertMessage);
+        alertMessage = isNumber ? numberInputIsEmptyAlertMessage : letterInputIsEmptyAlertMessage;
         result = true;
     }
-    
-    if (isNaN(number))
+    else if (isNumber && isNaN(inputValue))
     {
-        alert(numberInputIsNaNAlertMessage);
+        alertMessage = numberInputIsNaNAlertMessage;
         result = true;
     }
-    
-    return result;
-}
-
-function checkLetterErrors(letter)
-{
-    let result = false;
-    if (letter.length == 0)
+    else if (!isNumber && !isNaN(inputValue))
     {
-        alert(letterInputIsEmptyAlertMessage);
+        alertMessage = letterInputIsNotLetterAlertMessage;
         result = true;
     }
 
-    if (!isNaN(letter))
+    if (alertMessage)
     {
-        alert(letterInputIsNotLetterAlertMessage);
-        result = true;
+        alert(alertMessage);
     }
-    
+
     return result;
 }
 
