@@ -107,6 +107,6 @@ function calculateRemainder(number)
 
 function calculateLetter(remainder)
 {
-    let letrasDNI = Object.fromEntries(dniValues.entries());
-    return letrasDNI[remainder];
+    let dniLetters = Object.fromEntries(dniValues.entries());
+    return dniLetters[remainder];
 }
