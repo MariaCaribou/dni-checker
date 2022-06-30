@@ -1,4 +1,4 @@
-const dniValues = new Map([
+const dniValueMap = new Map([
     [0, 'T'],
     [1, 'R'],
     [2, 'W'],
@@ -24,53 +24,50 @@ const dniValues = new Map([
     [22, 'E'],
 ]);
 
+const dniNumberInput = document.getElementById('dni-number');
+const dniLetterInput = document.getElementById('dni-letter');
+const outcomeMessageElement = document.getElementById('message');
+const fullDniElement = document.getElementById('full-dni');
+
+const numberInputIsEmptyAlertMessage = 'Debe rellenar el campo NÚMERO';
+const numberInputIsNaNAlertMessage = 'El apartado NÚMERO solo debe contener números';
+const letterInputIsEmptyAlertMessage = 'Debe rellenar el campo LETRA';
+const letterInputIsNotLetterAlertMessage = 'El apartado LETRA solo debe contener una letra';
+
+const successOutcomeMessage = ' ES CORRECTA';
+const errorOutcomeMessage = ' ES ERRÓNEA';
+
+const successOutcomeMessageCSSClass = 'success-message';
+const errorOutcomeMessageCSSClass = 'error-message';
+
 function checkDni()
 {
-    let dniNumberInput = document.getElementById('dni-number');
     let areThereNumberErrors = checkNumberErrors(dniNumberInput.value);
-    
-    let dniLetterInput = document.getElementById('letter');
     let areThereLetterErrors = checkLetterErrors(dniLetterInput.value);
+
+    // Failsafe
     if (areThereNumberErrors || areThereLetterErrors)
     {
-        dniNumberInput.value = '';
-        dniLetterInput.value = '';
         return false;
     }
 
-    let dniLetter = calculateLetter(calculateRemainder(dniNumberInput.value));
-    let messageElement = document.getElementById('message');
+    calculateFullDni();
 
-    if (dniLetterInput.value.toLowerCase() == dniLetter.toLowerCase())
-    {
-        messageElement.innerHTML = dniLetter + ' ES CORRECTA';
-        messageElement.classList.remove('error-message');
-        messageElement.classList.add('success-message');
-    }
-    else
-    {
-        messageElement.innerHTML = dniLetterInput.value + ' ES ERRÓNEA';
-        messageElement.classList.remove('success-message');
-        messageElement.classList.add('error-message');
-    }
-
-    let fullDniElement = document.getElementById('full-dni');
-    fullDniElement.innerHTML = dniNumberInput.value + dniLetter;
     return false;
 }
 
 function checkNumberErrors(number)
 {
     let result = false;
-    if (number.length == '')
+    if (number.length == 0)
     {
-        alert('Debe rellenar el campo NÚMERO');
+        alert(numberInputIsEmptyAlertMessage);
         result = true;
     }
     
     if (isNaN(number))
     {
-        alert('El apartado NÚMERO solo debe contener números');
+        alert(numberInputIsNaNAlertMessage);
         result = true;
     }
     
@@ -80,19 +77,37 @@ function checkNumberErrors(number)
 function checkLetterErrors(letter)
 {
     let result = false;
-    if (letter.length == '')
+    if (letter.length == 0)
     {
-        alert('Debe rellenar el campo LETRA');
+        alert(letterInputIsEmptyAlertMessage);
         result = true;
     }
 
     if (!isNaN(letter))
     {
-        alert('El apartado LETRA solo debe contener una letra');
+        alert(letterInputIsNotLetterAlertMessage);
         result = true;
     }
     
     return result;
+}
+
+function calculateFullDni()
+{
+    let dniLetter = getMatchingLetter(calculateRemainder(dniNumberInput.value));
+    let doesDniLetterMatchMap = dniLetterInput.value.toLowerCase() == dniLetter.toLowerCase();
+    fullDniElement.innerHTML = dniNumberInput.value + dniLetter;
+    
+    if (doesDniLetterMatchMap)
+    {
+        outcomeMessageElement.innerHTML = dniLetter + successOutcomeMessage;
+        applySuccessMessageCSS();
+    }
+    else
+    {
+        outcomeMessageElement.innerHTML = dniLetterInput.value + errorOutcomeMessage;
+        applyErrorMessageCSS();
+    }
 }
 
 function calculateRemainder(number)
@@ -100,13 +115,25 @@ function calculateRemainder(number)
     let sum = 0;
     for(let i = 0; i < number.length; i++)
     {
-        sum = sum + number[i];
+        sum += number[i];
     }
     return sum % 23;   
 }
 
-function calculateLetter(remainder)
+function getMatchingLetter(remainder)
 {
-    let dniLetters = Object.fromEntries(dniValues.entries());
+    let dniLetters = Object.fromEntries(dniValueMap.entries());
     return dniLetters[remainder];
+}
+
+function applySuccessMessageCSS()
+{
+    outcomeMessageElement.classList.remove(errorOutcomeMessageCSSClass);
+    outcomeMessageElement.classList.add(successOutcomeMessageCSSClass);
+}
+
+function applyErrorMessageCSS()
+{
+    outcomeMessageElement.classList.remove(successOutcomeMessageCSSClass);
+    outcomeMessageElement.classList.add(errorOutcomeMessageCSSClass);
 }

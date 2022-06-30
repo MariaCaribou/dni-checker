@@ -14,9 +14,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/style.css">
-
-    <!-- JS -->
-    <script type="text/javascript" src="./js/dni-checker.js"></script>
 </head>
 <body>
     <div id="container1">
@@ -26,8 +23,8 @@
             <label for="number">Número</label>
             <input type="text" name="dni-number" id="dni-number" maxlength="8" placeholder="12345678"/>
 
-            <label for="letter">Letra</label>
-            <input type="text" name="letter" id="letter" maxlength="1" placeholder="Z"/>
+            <label for="dni-letter">Letra</label>
+            <input type="text" name="dni-letter" id="dni-letter" maxlength="1" placeholder="Z"/>
             
             <input type="submit" id="button" value="Aceptar">
         </form>
@@ -38,6 +35,9 @@
         <span id="message"></span>
         <span>TU NÚMERO COMPLETO ES</span>
         <span id="full-dni"></span>
-    </div>  
+    </div> 
+    
+    <!-- JS -->
+    <script type="text/javascript" src="./js/dni-checker.js"></script>
 </body>
 </html>

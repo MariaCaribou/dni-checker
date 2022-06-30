@@ -35,7 +35,7 @@ form label:nth-child(4) {
     margin-top: 10px;
 }
 
-#dni-number, #letter {
+#dni-number, #dni-letter {
     display: block;
     margin: 10px auto;
     background-color: #eff7f6;
@@ -49,7 +49,7 @@ form label:nth-child(4) {
     transition: all 0.15s ease-in-out;
 }
 
-#dni-number:hover, #letter:hover {
+#dni-number:hover, #dni-letter:hover {
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
